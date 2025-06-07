@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inatel Mentoria Premium</title>
+    <style>
+        :root {
+            --primary: #003366;
+            --secondary: #FF6600;
+            --light: #F5F5F5;
+        }
+        
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .mentor-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            transition: transform 0.3s;
+        }
+        
+        .mentor-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .mentor-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        
+        .rating {
+            color: var(--secondary);
+            margin: 5px 0;
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--primary);
+        }
+        
+        .btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn:hover {
+            background: #002244;
+        }
+        
+        .filter-bar {
+            display: flex;
+            margin-bottom: 20px;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-select {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mentorias Premium</h1>
+        <p>Conecte-se com veteranos para acelerar seu aprendizado</p>
+        
+        <div class="filter-bar">
+            <select class="filter-select" id="areaFilter">
+                <option value="todas">Todas as Áreas</option>
+                <option value="programacao">Programação</option>
+                <option value="circuitos">Circuitos</option>
+                <option value="matematica">Matemática</option>
+            </select>
+            
+            <select class="filter-select" id="priceFilter">
+                <option value="qualquer">Qualquer Preço</option>
+                <option value="ate30">Até R$ 30/h</option>
+                <option value="30a50">R$ 30-50/h</option>
+                <option value="acima50">Acima de R$ 50/h</option>
+            </select>
+            
+            <select class="filter-select" id="ratingFilter">
+                <option value="qualquer">Qualquer Avaliação</option>
+                <option value="4mais">4+ estrelas</option>
+                <option value="3mais">3+ estrelas</option>
+            </select>
+        </div>
+        
+        <div class="mentor-card" id="mentor1" data-area="programacao matematica" data-price="40" data-rating="4.2">
+            <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="Mentor" class="mentor-photo">
+            <div>
+                <h3>Maria Silva</h3>
+                <p>Eng. Computação - 5º período</p>
+                <div class="rating">★★★★☆ 4.2 (15 avaliações)</div>
+                <p>Especialidades: Python, Cálculo, Eletrônica</p>
+                <p class="price">R$ 40,00/h (Inatel recebe R$ 8,00)</p>
+                <button class="btn" onclick="agendarMentoria('Maria Silva')">Agendar Mentoria</button>
+            </div>
+        </div>
+        
+        <div class="mentor-card" id="mentor2" data-area="circuitos matematica" data-price="50" data-rating="4.8">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Mentor" class="mentor-photo">
+            <div>
+                <h3>Fefe Deus dos Calculos</h3>
+                <p>Eng. Software - 5º período</p>
+                <div class="rating">★★★★★ 4.8 (22 avaliações)</div>
+                <p>Especialidades: Calculo 1 e Calculo 2</p>
+                <p class="price">R$ 99,99/h (Inatel recebe R$ 0,00)</p>
+                <button class="btn" onclick="agendarMentoria('Fefe Deus dos Calculos')">Agendar Mentoria</button>
+            </div>
+        </div>
+        
+        <div class="mentor-card" id="mentor3" data-area="programacao" data-price="25" data-rating="4.5">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Mentor" class="mentor-photo">
+            <div>
+                <h3>Ana Costa</h3>
+                <p>Eng. Software - 4º período</p>
+                <div class="rating">★★★★☆ 4.5 (10 avaliações)</div>
+                <p>Especialidades: Java, JavaScript, Banco de Dados</p>
+                <p class="price">R$ 25,00/h (Inatel recebe R$ 5,00)</p>
+                <button class="btn" onclick="agendarMentoria('Ana Costa')">Agendar Mentoria</button>
+            </div>
+        </div>
+        
+        <div class="mentor-card" id="mentor4" data-area="matematica" data-price="60" data-rating="3.8">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Mentor" class="mentor-photo">
+            <div>
+                <h3>Pedro Santos</h3>
+                <p>Eng. Elétrica - 7º período</p>
+                <div class="rating">★★★☆☆ 3.8 (8 avaliações)</div>
+                <p>Especialidades: Cálculo, Álgebra Linear, Física</p>
+                <p class="price">R$ 60,00/h (Inatel recebe R$ 12,00)</p>
+                <button class="btn" onclick="agendarMentoria('Pedro Santos')">Agendar Mentoria</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function agendarMentoria(mentorNome) {
+            alert(`Você está agendando uma mentoria com ${mentorNome}\n\nEsta funcionalidade seria implementada com:\n- Calendário de disponibilidade\n- Sistema de pagamento\n- Confirmação por e-mail`);
+        }
+        
+        // Adiciona event listeners para os filtros
+        document.getElementById('areaFilter').addEventListener('change', filtrarMentores);
+        document.getElementById('priceFilter').addEventListener('change', filtrarMentores);
+        document.getElementById('ratingFilter').addEventListener('change', filtrarMentores);
+        
+        function filtrarMentores() {
+            const areaSelecionada = document.getElementById('areaFilter').value;
+            const precoSelecionado = document.getElementById('priceFilter').value;
+            const avaliacaoSelecionada = document.getElementById('ratingFilter').value;
+            
+            const mentores = document.querySelectorAll('.mentor-card');
+            
+            mentores.forEach(mentor => {
+                const areaMentor = mentor.getAttribute('data-area');
+                const precoMentor = parseFloat(mentor.getAttribute('data-price'));
+                const avaliacaoMentor = parseFloat(mentor.getAttribute('data-rating'));
+                
+                let areaMatch = false;
+                let precoMatch = false;
+                let avaliacaoMatch = false;
+                
+                // Verifica filtro de área
+                if (areaSelecionada === 'todas') {
+                    areaMatch = true;
+                } else {
+                    const areas = areaMentor.split(' ');
+                    areaMatch = areas.includes(areaSelecionada);
+                }
+                
+                // Verifica filtro de preço
+                switch(precoSelecionado) {
+                    case 'qualquer':
+                        precoMatch = true;
+                        break;
+                    case 'ate30':
+                        precoMatch = precoMentor <= 30;
+                        break;
+                    case '30a50':
+                        precoMatch = precoMentor >= 30 && precoMentor <= 50;
+                        break;
+                    case 'acima50':
+                        precoMatch = precoMentor > 50;
+                        break;
+                }
+                
+                // Verifica filtro de avaliação
+                switch(avaliacaoSelecionada) {
+                    case 'qualquer':
+                        avaliacaoMatch = true;
+                        break;
+                    case '4mais':
+                        avaliacaoMatch = avaliacaoMentor >= 4;
+                        break;
+                    case '3mais':
+                        avaliacaoMatch = avaliacaoMentor >= 3;
+                        break;
+                }
+                
+                // Mostra ou esconde o mentor baseado nos filtros
+                if (areaMatch && precoMatch && avaliacaoMatch) {
+                    mentor.classList.remove('hidden');
+                } else {
+                    mentor.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
