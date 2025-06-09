@@ -4,89 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inatel Mentoria Premium</title>
-    <style>
-        :root {
-            --primary: #003366;
-            --secondary: #FF6600;
-            --light: #F5F5F5;
-        }
-        
-        body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: var(--light);
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .mentor-card {
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-            display: flex;
-            transition: transform 0.3s;
-        }
-        
-        .mentor-card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .mentor-photo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-right: 20px;
-        }
-        
-        .rating {
-            color: var(--secondary);
-            margin: 5px 0;
-        }
-        
-        .price {
-            font-weight: bold;
-            color: var(--primary);
-        }
-        
-        .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .btn:hover {
-            background: #002244;
-        }
-        
-        .filter-bar {
-            display: flex;
-            margin-bottom: 20px;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .filter-select {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ddd;
-        }
-        
-        .hidden {
-            display: none;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
@@ -128,7 +46,7 @@
         </div>
         
         <div class="mentor-card" id="mentor2" data-area="circuitos matematica" data-price="50" data-rating="4.8">
-            <img src="https://github.com/JohnSugahara/S05/blob/main/imagem_2025-06-07_193936165.png" alt="Mentor" class="mentor-photo">
+            <img src="https://assets.onecompiler.app/42wgdhf5s/43m4abd5z/imagem_2025-06-07_193221962.png" alt="Mentor" class="mentor-photo">
             <div>
                 <h3>Fefe Deus dos Calculos</h3>
                 <p>Eng. Software - 5º período</p>
@@ -164,77 +82,6 @@
         </div>
     </div>
     
-    <script>
-        function agendarMentoria(mentorNome) {
-            alert(`Você está agendando uma mentoria com ${mentorNome}\n\nEsta funcionalidade seria implementada com:\n- Calendário de disponibilidade\n- Sistema de pagamento\n- Confirmação por e-mail`);
-        }
-        
-        // Adiciona event listeners para os filtros
-        document.getElementById('areaFilter').addEventListener('change', filtrarMentores);
-        document.getElementById('priceFilter').addEventListener('change', filtrarMentores);
-        document.getElementById('ratingFilter').addEventListener('change', filtrarMentores);
-        
-        function filtrarMentores() {
-            const areaSelecionada = document.getElementById('areaFilter').value;
-            const precoSelecionado = document.getElementById('priceFilter').value;
-            const avaliacaoSelecionada = document.getElementById('ratingFilter').value;
-            
-            const mentores = document.querySelectorAll('.mentor-card');
-            
-            mentores.forEach(mentor => {
-                const areaMentor = mentor.getAttribute('data-area');
-                const precoMentor = parseFloat(mentor.getAttribute('data-price'));
-                const avaliacaoMentor = parseFloat(mentor.getAttribute('data-rating'));
-                
-                let areaMatch = false;
-                let precoMatch = false;
-                let avaliacaoMatch = false;
-                
-                // Verifica filtro de área
-                if (areaSelecionada === 'todas') {
-                    areaMatch = true;
-                } else {
-                    const areas = areaMentor.split(' ');
-                    areaMatch = areas.includes(areaSelecionada);
-                }
-                
-                // Verifica filtro de preço
-                switch(precoSelecionado) {
-                    case 'qualquer':
-                        precoMatch = true;
-                        break;
-                    case 'ate30':
-                        precoMatch = precoMentor <= 30;
-                        break;
-                    case '30a50':
-                        precoMatch = precoMentor >= 30 && precoMentor <= 50;
-                        break;
-                    case 'acima50':
-                        precoMatch = precoMentor > 50;
-                        break;
-                }
-                
-                // Verifica filtro de avaliação
-                switch(avaliacaoSelecionada) {
-                    case 'qualquer':
-                        avaliacaoMatch = true;
-                        break;
-                    case '4mais':
-                        avaliacaoMatch = avaliacaoMentor >= 4;
-                        break;
-                    case '3mais':
-                        avaliacaoMatch = avaliacaoMentor >= 3;
-                        break;
-                }
-                
-                // Mostra ou esconde o mentor baseado nos filtros
-                if (areaMatch && precoMatch && avaliacaoMatch) {
-                    mentor.classList.remove('hidden');
-                } else {
-                    mentor.classList.add('hidden');
-                }
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
